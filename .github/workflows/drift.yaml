@@ -14,14 +14,17 @@ jobs:
         uses: actions/checkout@v2
  
       - name: Set up AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
  
+      - name: Pull cloud-concierge Docker image
+        run: docker pull dragondropcloud/cloud-concierge:latest
+ 
       - name: Run cloud-concierge
-        run: docker run --env-file ./my-env-file.env -v ${{ github.workspace }}:/main -v ${{ secrets.AWS_CREDENTIALS }}:/main/credentials/aws:ro -w /main dragondropcloud/cloud-concierge:latest
+        run: docker run -v main:/main -v ~/.aws:/main/credentials/aws:ro -w /main dragondropcloud/cloud-concierge:latest
  
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

@@ -23,7 +23,7 @@ jobs:
      run: |
        echo "TF_STATE_BUCKET=my-terraform-state-bucket" > my-env-file.env
        echo "AWS_REGION=us-east-1" >> my-env-file.env
-       # Add any other environment variables needed
+       
    # Step 4: Pull the cloud-concierge Docker image
    - name: Pull cloud-concierge Docker image
      run: docker pull dragondropcloud/cloud-concierge:latest

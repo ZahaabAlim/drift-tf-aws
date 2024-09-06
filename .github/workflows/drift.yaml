@@ -3,7 +3,7 @@ name: Cloud Concierge
 on:
   push:
     branches:
-      - main
+      - master
  
 jobs:
   run-cloud-concierge:

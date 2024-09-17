@@ -24,7 +24,7 @@ jobs:
         run: docker pull dragondropcloud/cloud-concierge:latest
  
       - name: Run cloud-concierge
-        run: docker run -v main:/main -v ~/.aws:/main/credentials/aws:ro -w /main dragondropcloud/cloud-concierge:latest
+        run: docker run --env-file ./my-aws-env.env -v ~/.aws:/main/credentials/aws:ro -w /main  dragondropcloud/cloud-concierge:latest
  
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
